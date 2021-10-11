@@ -5,7 +5,7 @@ public class Food : MonoBehaviour
 
     public BoxCollider2D gridArea;
     private Vector2 foodPosition;
-    private AudioSource audio = new AudioSource();
+    private new AudioSource audio = new AudioSource();
 
     private void Start()
     {
@@ -15,7 +15,7 @@ public class Food : MonoBehaviour
 
     private void RandomizePosition()
     {
-        Bounds bounds = this.gridArea;
+        Bounds bounds = this.gridArea.bounds;
 
         float x = Random.Range(bounds.min.x, bounds.max.x);
         float y = Random.Range(bounds.min.y, bounds.max.y);
@@ -30,12 +30,11 @@ public class Food : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             RandomizePosition();
-            Debug.Log("Point, you got points!");
+            Debug.Log("Point!");
             audio.PlayOneShot(audio.clip, 0.2f);
         }
-        else if(other.CompareTag("Przeszkoda"))
+        else if(other.CompareTag("Obstacle"))
         {
-            Debug.Log("No you filthy animak, you got no brains in your brain!");
             RandomizePosition();
         }
 
