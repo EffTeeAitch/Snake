@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 
@@ -12,6 +13,7 @@ public class SnakeMovement : MonoBehaviour
     private AudioSource _audio = new AudioSource();
     public GameObject foodObject;
     private int _scoreInfo;
+    public Text text;
 
 
 
@@ -26,6 +28,7 @@ public class SnakeMovement : MonoBehaviour
     private void Update()
     {
         SetDirection();
+        text.text = $"Wynik: {_scoreInfo}";
     }
     private void SetDirection()
     {
