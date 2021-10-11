@@ -11,7 +11,7 @@ public class SnakeMovement : MonoBehaviour
     
     private AudioSource _audio = new AudioSource();
     public GameObject foodObject;
-    private int scoreInfo;
+    private int _scoreInfo;
 
 
 
@@ -20,7 +20,7 @@ public class SnakeMovement : MonoBehaviour
         ResetSnake();
         _audio = GetComponent<AudioSource>();
         var component = foodObject.GetComponent<Food>();
-        scoreInfo = component.score;
+        _scoreInfo = component.score;
     }
 
     private void Update()
@@ -96,7 +96,7 @@ public class SnakeMovement : MonoBehaviour
         this.transform.position = new Vector3(-17,0,0);
 
         _direction = Vector2.right;
-        scoreInfo = 0;
+        _scoreInfo = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -104,13 +104,13 @@ public class SnakeMovement : MonoBehaviour
         if (other.CompareTag("Food"))
         {
             Grow();
-            scoreInfo += 1;
-            Debug.Log($"Wynik: {scoreInfo}");
+            _scoreInfo += 1;
+            Debug.Log($"Wynik: {_scoreInfo}");
         }
         else if(other.CompareTag("Obstacle"))
         {
             ResetSnake();
-            scoreInfo = 0;
+            _scoreInfo = 0;
             _audio.Play();
         }
     }
