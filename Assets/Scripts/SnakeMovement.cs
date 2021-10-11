@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class SnakeMovement : MonoBehaviour
 {
     private Vector2 _direction;
-    private readonly List<Transform> _segments = new List<Transform>();
+    public readonly List<Transform> _segments = new List<Transform>();
     public Transform segmentPrefab;
     public int initialSize = 4;
     
@@ -108,7 +108,7 @@ public class SnakeMovement : MonoBehaviour
         {
             Grow();
             _scoreInfo += 1;
-            Debug.Log($"Wynik: {_scoreInfo}");
+            //Debug.Log($"Wynik: {_scoreInfo}");
         }
         else if(other.CompareTag("Obstacle"))
         {

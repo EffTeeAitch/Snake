@@ -1,33 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Food : MonoBehaviour
+public class DifferentFood : MonoBehaviour
 {
-
     public BoxCollider2D gridArea;
     public GameObject player;
     private AudioSource _audio = new AudioSource();
-    [SerializeField]public int score = 0;
-    private SnakeMovement info;
-
+    public int score = 0;
 
     private void Start()
     {
         RandomizePosition();
-        var informacaj = player.GetComponent<SnakeMovement>();
         _audio = GetComponent<AudioSource>();
-    }
-
-
-    private void Update()
-    {
-        foreach( var s in player.GetComponent<SnakeMovement>()._segments)
-        {
-            if(s.transform.position == this.transform.position)
-            {
-                Debug.Log("Usterka!");
-                RandomizePosition();
-            }
-        }
     }
 
     public void RandomizePosition()
@@ -50,14 +35,12 @@ public class Food : MonoBehaviour
             _audio.PlayOneShot(_audio.clip, 0.2f);
         }
         
-        if(other.CompareTag("Obstacle"))
+        if (other.CompareTag("Obstacle"))
         {
             RandomizePosition();
-            Debug.Log("Przeszkoda!");
-            
         }
 
-               
+
     }
-    
+
 }
