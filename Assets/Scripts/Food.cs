@@ -4,13 +4,14 @@ public class Food : MonoBehaviour
 {
 
     public BoxCollider2D gridArea;
-    private Vector2 foodPosition;
-    private new AudioSource audio = new AudioSource();
+    public GameObject player;
+    private new AudioSource _audio = new AudioSource();
+    public int score;
 
     private void Start()
     {
         RandomizePosition();
-        audio = GetComponent<AudioSource>();
+        _audio = GetComponent<AudioSource>();
     }
 
     private void RandomizePosition()
@@ -30,8 +31,8 @@ public class Food : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             RandomizePosition();
-            Debug.Log("Point!");
-            audio.PlayOneShot(audio.clip, 0.2f);
+            _audio.PlayOneShot(_audio.clip, 0.2f);
+            score++;
         }
         else if(other.CompareTag("Obstacle"))
         {

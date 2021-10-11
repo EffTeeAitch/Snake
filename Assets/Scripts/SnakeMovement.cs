@@ -5,15 +5,15 @@ using System.Collections.Generic;
 public class SnakeMovement : MonoBehaviour
 {
     private Vector2 _direction;
-    private List<Transform> _segments = new List<Transform>();
+    private readonly List<Transform> _segments = new List<Transform>();
     public Transform segmentPrefab;
-    [SerializeField] public int initialSize = 4;
-    private new AudioSource audio = new AudioSource();
+    public int initialSize = 4;
+    private new AudioSource _audio = new AudioSource();
 
     private void Start()
     {
         ResetSnake();
-        audio = GetComponent<AudioSource>();
+        _audio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -96,10 +96,11 @@ public class SnakeMovement : MonoBehaviour
         if (other.CompareTag("Food"))
         {
             Grow();
-        }else if(other.CompareTag("Obstacle"))
+        }
+        else if(other.CompareTag("Obstacle"))
         {
             ResetSnake();
-            audio.Play();
+            _audio.Play();
         }
     }
 
