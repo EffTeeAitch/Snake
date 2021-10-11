@@ -1,2 +1,2 @@
 # Snake-by-Tutorial
- Snake by Zigurous' Tutorial
+In Snake production I used help of Zigurous' Tutorial
