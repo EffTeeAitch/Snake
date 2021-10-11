@@ -1,2 +1,2 @@
 # Snake-by-Tutorial
- Snake by Zigurous' Tutorial
+ To create that Snake I used help of Zigurous' Tutorial.
