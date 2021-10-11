@@ -5,7 +5,7 @@ public class Food : MonoBehaviour
 
     public BoxCollider2D gridArea;
     public GameObject player;
-    private new AudioSource _audio = new AudioSource();
+    private AudioSource _audio = new AudioSource();
     public int score;
 
     private void Start()

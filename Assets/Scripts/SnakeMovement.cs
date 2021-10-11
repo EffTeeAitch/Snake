@@ -8,7 +8,7 @@ public class SnakeMovement : MonoBehaviour
     private readonly List<Transform> _segments = new List<Transform>();
     public Transform segmentPrefab;
     public int initialSize = 4;
-    private new AudioSource _audio = new AudioSource();
+    private AudioSource _audio = new AudioSource();
 
     private void Start()
     {
