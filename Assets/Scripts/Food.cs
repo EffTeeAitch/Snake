@@ -12,7 +12,6 @@ public class Food : MonoBehaviour
     {
         RandomizePosition();
         _audio = GetComponent<AudioSource>();
-        score++;
     }
 
     public void RandomizePosition()
@@ -33,7 +32,6 @@ public class Food : MonoBehaviour
         {
             RandomizePosition();
             _audio.PlayOneShot(_audio.clip, 0.2f);
-            score++;
         }
         else if(other.CompareTag("Obstacle"))
         {

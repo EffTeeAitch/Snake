@@ -10,7 +10,7 @@ public class SnakeMovement : MonoBehaviour
     public int initialSize = 4;
     
     private AudioSource _audio = new AudioSource();
-    [SerializeField]public GameObject foodObject;
+    public GameObject foodObject;
     private int scoreInfo;
 
 
@@ -104,11 +104,13 @@ public class SnakeMovement : MonoBehaviour
         if (other.CompareTag("Food"))
         {
             Grow();
+            scoreInfo += 1;
             Debug.Log($"Wynik: {scoreInfo}");
         }
         else if(other.CompareTag("Obstacle"))
         {
             ResetSnake();
+            scoreInfo = 0;
             _audio.Play();
         }
     }
