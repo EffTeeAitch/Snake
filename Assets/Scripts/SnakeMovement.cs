@@ -8,12 +8,19 @@ public class SnakeMovement : MonoBehaviour
     private readonly List<Transform> _segments = new List<Transform>();
     public Transform segmentPrefab;
     public int initialSize = 4;
+    
     private AudioSource _audio = new AudioSource();
+    [SerializeField]public GameObject foodObject;
+    private int scoreInfo;
+
+
 
     private void Start()
     {
         ResetSnake();
         _audio = GetComponent<AudioSource>();
+        var component = foodObject.GetComponent<Food>();
+        scoreInfo = component.score;
     }
 
     private void Update()
@@ -89,6 +96,7 @@ public class SnakeMovement : MonoBehaviour
         this.transform.position = new Vector3(-17,0,0);
 
         _direction = Vector2.right;
+        scoreInfo = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -96,6 +104,7 @@ public class SnakeMovement : MonoBehaviour
         if (other.CompareTag("Food"))
         {
             Grow();
+            Debug.Log($"Wynik: {scoreInfo}");
         }
         else if(other.CompareTag("Obstacle"))
         {

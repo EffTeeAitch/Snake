@@ -6,15 +6,16 @@ public class Food : MonoBehaviour
     public BoxCollider2D gridArea;
     public GameObject player;
     private AudioSource _audio = new AudioSource();
-    public int score;
+    public int score = 0;
 
     private void Start()
     {
         RandomizePosition();
         _audio = GetComponent<AudioSource>();
+        score++;
     }
 
-    private void RandomizePosition()
+    public void RandomizePosition()
     {
         Bounds bounds = this.gridArea.bounds;
 
