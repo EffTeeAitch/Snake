@@ -8,10 +8,12 @@ public class SnakeMovement : MonoBehaviour
     private List<Transform> _segments = new List<Transform>();
     public Transform segmentPrefab;
     [SerializeField] public int initialSize = 4;
+    private new AudioSource audio = new AudioSource();
 
     private void Start()
     {
         ResetSnake();
+        audio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -20,21 +22,29 @@ public class SnakeMovement : MonoBehaviour
     }
     private void SetDirection()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        // Only allow turning up or down while moving in the x-axis
+        if (this._direction.x != 0f)
         {
-            _direction = Vector2.up;
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                this._direction = Vector2.up;
+            }
+            else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                this._direction = Vector2.down;
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.A))
+        // Only allow turning left or right while moving in the y-axis
+        else if (this._direction.y != 0f)
         {
-            _direction = Vector2.left;
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            _direction = Vector2.down;
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            _direction = Vector2.right;
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                this._direction = Vector2.right;
+            }
+            else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                this._direction = Vector2.left;
+            }
         }
     }
 
@@ -63,6 +73,7 @@ public class SnakeMovement : MonoBehaviour
 
     private void ResetSnake()
     {
+        
         for(int i = 1; i < _segments.Count; i++)
         {
             Destroy(_segments[i].gameObject);
@@ -75,9 +86,9 @@ public class SnakeMovement : MonoBehaviour
             _segments.Add(Instantiate(segmentPrefab));
         }
 
-        this.transform.position = Vector3.zero;
+        this.transform.position = new Vector3(-17,0,0);
 
-        _direction = Vector2.zero;
+        _direction = Vector2.right;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -88,6 +99,7 @@ public class SnakeMovement : MonoBehaviour
         }else if(other.CompareTag("Obstacle"))
         {
             ResetSnake();
+            audio.Play();
         }
     }
 

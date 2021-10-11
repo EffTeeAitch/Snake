@@ -5,10 +5,12 @@ public class Food : MonoBehaviour
 
     public BoxCollider2D gridArea;
     private Vector2 foodPosition;
+    private new AudioSource audio = new AudioSource();
 
     private void Start()
     {
         RandomizePosition();
+        audio = GetComponent<AudioSource>();
     }
 
     private void RandomizePosition()
@@ -25,11 +27,18 @@ public class Food : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Obstacle"))
+        if (other.CompareTag("Player"))
+        {
+            RandomizePosition();
+            Debug.Log("Point!");
+            audio.PlayOneShot(audio.clip, 0.2f);
+        }
+        else if(other.CompareTag("Obstacle"))
         {
             RandomizePosition();
         }
-        
+
+               
     }
     
 }
