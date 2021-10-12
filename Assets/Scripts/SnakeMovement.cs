@@ -14,7 +14,8 @@ public class SnakeMovement : MonoBehaviour
     public GameObject foodObject;
     private int _scoreInfo;
     public Text text;
-    private float fixedDeltaTime;
+    [SerializeField]private float curSpeed = 0.5f;
+    [SerializeField]private float maxSpeed = 2.0f;
 
 
 
@@ -23,7 +24,6 @@ public class SnakeMovement : MonoBehaviour
         ResetSnake();
         _audio = GetComponent<AudioSource>();
         var component = foodObject.GetComponent<Food>();
-        fixedDeltaTime = Time.fixedDeltaTime;
     }
 
     private void Update()
@@ -34,16 +34,18 @@ public class SnakeMovement : MonoBehaviour
     }
     private void SetDirection()
     {
+
+        Speed();
         // Only allow turning up or down while moving in the x-axis
         if (this._direction.x != 0f)
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                this._direction = Vector2.up;
+                this._direction = Vector2.up * curSpeed;
             }
             else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
-                this._direction = Vector2.down;
+                this._direction = Vector2.down * curSpeed;
             }
         }
         // Only allow turning left or right while moving in the y-axis
@@ -51,11 +53,11 @@ public class SnakeMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
-                this._direction = Vector2.right;
+                this._direction = Vector2.right * curSpeed;
             }
             else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                this._direction = Vector2.left;
+                this._direction = Vector2.left * curSpeed;
             }
         }
     }
@@ -72,39 +74,22 @@ public class SnakeMovement : MonoBehaviour
            this.transform.position.x + _direction.x,
             this.transform.position.y + _direction.y,
             0.0f
-        );
+        ); 
     }
 
 
     private void Speed()
     {
-        float _tempo = Time.timeScale;
-        Debug.Log($"TimeScale: {_tempo}");
-        Debug.Log($"InfoSCore: {_scoreInfo}");
-
-        Time.fixedDeltaTime = this.fixedDeltaTime * _tempo;
-        switch (_scoreInfo)
+        if (_scoreInfo > 4 && _scoreInfo <= 10)
         {
-            case 4:
-                _tempo = 0.5f;
-                break;
-            case 10:
-                _tempo = 0.6f;
-                break;
-            case 15:
-                _tempo = 0.8f;
-                break;
-            case 20:
-                _tempo = 0.8f;
-                break;
-            case 35:
-                _tempo = 1.0f;
-                break;
-
+            curSpeed = 0.6f;
         }
-
-
+        if (_scoreInfo > 10 && _scoreInfo <= 20)
+        {
+            curSpeed = 1f;
+        }
     }
+
     private void Grow()
     {
         Transform segment = Instantiate(this.segmentPrefab);
