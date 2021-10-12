@@ -13,6 +13,7 @@ public class SnakeMovement : MonoBehaviour
     private AudioSource _audio = new AudioSource();
     public GameObject foodObject;
     private int _scoreInfo;
+    private int _bestScore;
     public Text text;
     private float fixedDeltaTime;
 
@@ -22,12 +23,23 @@ public class SnakeMovement : MonoBehaviour
         _audio = GetComponent<AudioSource>();
         var component = foodObject.GetComponent<Food>();
         fixedDeltaTime = Time.fixedDeltaTime;
+        Cursor.visible = false;
     }
 
     private void Update()
     {
         SetDirection();
-        text.text = $"Wynik: {_scoreInfo}";
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+        if(_bestScore < _scoreInfo)
+        {
+            _bestScore = _scoreInfo;
+        }
+
+        text.text = $"Score: {_scoreInfo}                                              Best score: {_bestScore} ";
         Speed();
     }
     private void SetDirection()
