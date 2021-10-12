@@ -6,8 +6,6 @@ public class Food : MonoBehaviour
     public BoxCollider2D gridArea;
     public GameObject player;
     private AudioSource _audio = new AudioSource();
-    [SerializeField]public int score = 0;
-    private SnakeMovement info;
 
 
     private void Start()
@@ -53,7 +51,7 @@ public class Food : MonoBehaviour
         if(other.CompareTag("Obstacle"))
         {
             RandomizePosition();
-            Debug.Log("Przeszkoda!");
+            //Debug.Log("Przeszkoda!");
             
         }
 

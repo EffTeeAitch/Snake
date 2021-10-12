@@ -14,6 +14,7 @@ public class SnakeMovement : MonoBehaviour
     public GameObject foodObject;
     private int _scoreInfo;
     public Text text;
+    private float fixedDeltaTime;
 
 
 
@@ -22,13 +23,14 @@ public class SnakeMovement : MonoBehaviour
         ResetSnake();
         _audio = GetComponent<AudioSource>();
         var component = foodObject.GetComponent<Food>();
-        _scoreInfo = component.score;
+        fixedDeltaTime = Time.fixedDeltaTime;
     }
 
     private void Update()
     {
         SetDirection();
         text.text = $"Wynik: {_scoreInfo}";
+        Speed();
     }
     private void SetDirection()
     {
@@ -67,12 +69,46 @@ public class SnakeMovement : MonoBehaviour
         }
 
         this.transform.position = new Vector3(
-           Mathf.Round(this.transform.position.x) + _direction.x,
-            Mathf.Round(this.transform.position.y) + _direction.y,
+           this.transform.position.x + _direction.x,
+            this.transform.position.y + _direction.y,
             0.0f
         );
     }
 
+
+    private void Speed()
+    {
+
+        float _tempo = Time.timeScale;
+        Debug.Log($"TimeScale: {_tempo}");
+        Debug.Log($"InfoSCore: {_scoreInfo}");
+        
+        if (_scoreInfo <= 2)
+        {
+            _tempo = 0.6f;
+            Time.timeScale = _tempo;
+        }
+        if (_scoreInfo > 10 && _scoreInfo <= 15)
+        {
+            _tempo = 0.7f;
+        }
+        if (_scoreInfo > 15 && _scoreInfo <= 25)
+        {
+            _tempo = 0.8f;
+        }
+        if (_scoreInfo > 25 && _scoreInfo <= 35)
+        {
+            _tempo = 0.9f;
+
+        }
+        if (_scoreInfo > 35 && _scoreInfo <= 100)
+        {
+            _tempo = 1.5f;
+
+        }
+
+
+    }
     private void Grow()
     {
         Transform segment = Instantiate(this.segmentPrefab);
