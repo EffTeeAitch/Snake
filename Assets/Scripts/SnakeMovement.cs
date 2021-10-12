@@ -30,7 +30,7 @@ public class SnakeMovement : MonoBehaviour
     {
         SetDirection();
         text.text = $"Wynik: {_scoreInfo}";
-        Speed();
+        //Speed();
     }
     private void SetDirection()
     {
@@ -78,32 +78,28 @@ public class SnakeMovement : MonoBehaviour
 
     private void Speed()
     {
-
         float _tempo = Time.timeScale;
         Debug.Log($"TimeScale: {_tempo}");
         Debug.Log($"InfoSCore: {_scoreInfo}");
-        
-        if (_scoreInfo <= 2)
-        {
-            _tempo = 0.6f;
-            Time.timeScale = _tempo;
-        }
-        if (_scoreInfo > 10 && _scoreInfo <= 15)
-        {
-            _tempo = 0.7f;
-        }
-        if (_scoreInfo > 15 && _scoreInfo <= 25)
-        {
-            _tempo = 0.8f;
-        }
-        if (_scoreInfo > 25 && _scoreInfo <= 35)
-        {
-            _tempo = 0.9f;
 
-        }
-        if (_scoreInfo > 35 && _scoreInfo <= 100)
+        Time.fixedDeltaTime = this.fixedDeltaTime * _tempo;
+        switch (_scoreInfo)
         {
-            _tempo = 1.5f;
+            case 4:
+                _tempo = 0.5f;
+                break;
+            case 10:
+                _tempo = 0.6f;
+                break;
+            case 15:
+                _tempo = 0.8f;
+                break;
+            case 20:
+                _tempo = 0.8f;
+                break;
+            case 35:
+                _tempo = 1.0f;
+                break;
 
         }
 
