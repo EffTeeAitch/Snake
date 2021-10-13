@@ -12,14 +12,6 @@ public class Walls : MonoBehaviour
         snakeObj = GameObject.Find("Snake").GetComponent<Snake>();
         audioControll = GameObject.Find("Snake").GetComponent<AudioSource>();
     }
-    private void Update()
-    {
-        if(snakeObj._scoreInfo > 20)
-        {
-            //this.GetComponent<Collider2D>().isTrigger = false;
-            GameObject.Find("RightWall").GetComponent<Collider2D>().isTrigger = false;
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

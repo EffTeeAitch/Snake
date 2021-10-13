@@ -26,6 +26,21 @@ public class Snake : MonoBehaviour
         _scoreInfo = 19;
     }
 
+    private void FixedUpdate()
+    {
+
+        for (int i = _segments.Count - 1; i > 0; i--)
+        {
+            _segments[i].position = _segments[i - 1].position;
+        }
+
+        this.transform.position = new Vector3(
+           this.transform.position.x + _direction.x,
+            this.transform.position.y + _direction.y,
+            0.0f
+        );
+    }
+
     private void Update()
     {
         SetDirection();
@@ -72,20 +87,6 @@ public class Snake : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-
-        for(int i = _segments.Count - 1; i > 0; i--)
-        {
-            _segments[i].position = _segments[i - 1].position;
-        }
-
-        this.transform.position = new Vector3(
-           this.transform.position.x + _direction.x,
-            this.transform.position.y + _direction.y,
-            0.0f
-        ); 
-    }
     private void Speed()
     {
 
