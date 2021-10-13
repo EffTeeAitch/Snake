@@ -11,18 +11,17 @@ public class Food : MonoBehaviour
     private void Start()
     {
         RandomizePosition();
-        var informacaj = player.GetComponent<SnakeMovement>();
         _audio = GetComponent<AudioSource>();
     }
 
 
     private void Update()
     {
-        foreach( var s in player.GetComponent<SnakeMovement>()._segments)
+        foreach( var s in player.GetComponent<Snake>()._segments)
         {
             if(s.transform.position == this.transform.position)
             {
-                Debug.Log("Usterka!");
+                //Debug.Log("Usterka!");
                 RandomizePosition();
             }
         }
