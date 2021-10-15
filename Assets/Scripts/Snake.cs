@@ -12,7 +12,7 @@ public class Snake : MonoBehaviour
     
     private AudioSource _audio = new AudioSource();
     public GameObject foodObject;
-    [SerializeField]public int _scoreInfo;
+    [SerializeField] public int _scoreInfo;
     private int _bestScore;
     public Text text;
     private float fixedDeltaTime;
@@ -28,12 +28,10 @@ public class Snake : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         for (int i = _segments.Count - 1; i > 0; i--)
         {
             _segments[i].position = _segments[i - 1].position;
         }
-
         this.transform.position = new Vector3(
            this.transform.position.x + _direction.x,
             this.transform.position.y + _direction.y,
@@ -48,18 +46,15 @@ public class Snake : MonoBehaviour
         {
             Application.Quit();
         }
-
         if(_bestScore < _scoreInfo)
         {
             _bestScore = _scoreInfo;
         }
-
         text.text = $"Score: {_scoreInfo}                                              Best score: {_bestScore} ";
         Speed();
     }
     private void SetDirection()
     {
-
         Speed();
         // Only allow turning up or down while moving in the x-axis
         if (this._direction.x != 0f)
@@ -86,11 +81,8 @@ public class Snake : MonoBehaviour
             }
         }
     }
-
     private void Speed()
     {
-
-        //Debug.Log($"Fixed Delta Time: {fixedDeltaTime}");
         switch (_scoreInfo)
         {
             case 0:
@@ -127,10 +119,8 @@ public class Snake : MonoBehaviour
 
         _segments.Add(segment);
     }
-
     public void ResetSnake()
-    {
-        
+    { 
         for(int i = 1; i < _segments.Count; i++)
         {
             Destroy(_segments[i].gameObject);
@@ -148,7 +138,6 @@ public class Snake : MonoBehaviour
         _direction = Vector2.right;
         _scoreInfo = 0;
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Food"))
@@ -163,8 +152,5 @@ public class Snake : MonoBehaviour
             _scoreInfo = 0;
             _audio.Play();
         }
-        
     }
-
-
 }

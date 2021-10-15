@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DifferentFood : MonoBehaviour
 {
-    public BoxCollider2D gridArea;
+    public BoxCollider2D expandedGridArea;
     public GameObject player;
     private AudioSource _audio = new AudioSource();
     public int score = 0;
@@ -17,7 +17,7 @@ public class DifferentFood : MonoBehaviour
 
     public void RandomizePosition()
     {
-        Bounds bounds = this.gridArea.bounds;
+        Bounds bounds = this.expandedGridArea.bounds;
 
         float x = Random.Range(bounds.min.x, bounds.max.x);
         float y = Random.Range(bounds.min.y, bounds.max.y);

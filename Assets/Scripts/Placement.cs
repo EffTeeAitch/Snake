@@ -8,7 +8,6 @@ public class Placement : MonoBehaviour
     private Snake _snakeScript;
     private bool isFree;
     public GameObject player;
-    [SerializeField] private readonly float radius = 7.5f;
     private CinemachineVirtualCamera cinema;
 
 
@@ -40,7 +39,6 @@ public class Placement : MonoBehaviour
 
     private void CameraMovement()
     {
-        
         if (isFree)
         {
             GameObject.Find("MainCamera").GetComponent<CinemachineBrain>().enabled = true;
@@ -53,7 +51,6 @@ public class Placement : MonoBehaviour
             this.transform.position = new Vector3(0, 0, this.transform.position.z);
             
         }
-
     }
 
 
