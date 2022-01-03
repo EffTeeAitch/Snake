@@ -23,7 +23,7 @@ public class Snake : MonoBehaviour
         _audio = GetComponent<AudioSource>();
         fixedDeltaTime = Time.fixedDeltaTime;
         Cursor.visible = false;
-        _scoreInfo = 19;
+        _scoreInfo = 0;
     }
 
     private void FixedUpdate()
