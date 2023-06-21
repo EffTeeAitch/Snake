@@ -24,6 +24,7 @@ public class Snake : MonoBehaviour
         fixedDeltaTime = Time.fixedDeltaTime;
         Cursor.visible = false;
         _scoreInfo = 0;
+        segmentPrefab.tag = "Segments";
     }
 
     private void FixedUpdate()
@@ -34,8 +35,8 @@ public class Snake : MonoBehaviour
         }
         this.transform.position = new Vector3(
            this.transform.position.x + _direction.x,
-            this.transform.position.y + _direction.y,
-            0.0f
+           this.transform.position.y + _direction.y,
+           0.0f
         );
     }
 
@@ -146,11 +147,12 @@ public class Snake : MonoBehaviour
             _scoreInfo += 1;
             //Debug.Log($"Wynik: {_scoreInfo}");
         }
-        else if(other.CompareTag("Obstacle"))
+        else if (other.CompareTag("Obstacle") || other.CompareTag("Segments"))
         {
             ResetSnake();
             _scoreInfo = 0;
             _audio.Play();
         }
+        
     }
 }

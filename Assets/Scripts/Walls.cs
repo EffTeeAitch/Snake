@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Walls : MonoBehaviour
 {
-    private Snake snakeObj;
-    private AudioSource audioControll;
+    private Snake _snakeObj;
+    private AudioSource _audioControll;
 
     private void Start()
     {
-        snakeObj = GameObject.Find("Snake").GetComponent<Snake>();
-        audioControll = GameObject.Find("Snake").GetComponent<AudioSource>();
+        _snakeObj = GameObject.Find("Snake").GetComponent<Snake>();
+        _audioControll = GameObject.Find("Snake").GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            snakeObj.ResetSnake();
-            audioControll.Play();
+            _snakeObj.ResetSnake();
+            _audioControll.Play();
             
         }
     }

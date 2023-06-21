@@ -1263,7 +1263,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridArea: {fileID: 864387895}
-  player: {fileID: 1161375261}
+  expandedGridArea: {fileID: 674693548}
+  _player: {fileID: 1161375261}
+  _render: {fileID: 0}
 --- !u!82 &1406060362
 AudioSource:
   m_ObjectHideFlags: 0
