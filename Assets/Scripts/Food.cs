@@ -5,26 +5,18 @@ public class Food : MonoBehaviour
 
     public BoxCollider2D gridArea;
     public BoxCollider2D expandedGridArea;
-    [SerializeField] private GameObject _player;
+    public GameObject _player;
     private AudioSource _audio = new AudioSource();
     private Snake _snakeScript;
     [HideInInspector] public SpriteRenderer _render;
     private bool _isExtra = false;
+    [HideInInspector] public Snake snakeScript;
     private GameObject _extraFood;
 
 
     private void Start()
     {
         RandomizePosition();
-
-        #region extraFood
-
-        _extraFood = new GameObject("extraFood");
-        _extraFood.AddComponent<ExtraFood>();
-        _extraFood.AddComponent<SpriteRenderer>();
-
-        #endregion
-
         _player = GameObject.FindGameObjectWithTag("Player");
         _audio = GetComponent<AudioSource>();
         _render = GetComponent<SpriteRenderer>();
@@ -36,36 +28,7 @@ public class Food : MonoBehaviour
     {
         CheckValidity();
     }
-    public bool CheckExtraAvaliability()
-    {
-        int chance = Random.Range(1, 6);
-        if(chance == 3)
-        {
-            //Debug.Log("get extra");
-            return true;
-        }
-
-        return false;
-    }
-    public string ExtraType()
-    {
-        string mode = "";
-        switch (Random.Range(1, 4)){
-            case 1:
-                mode = "plus6";
-                break;
-            case 2:
-                mode = "slowSpead";
-                break;
-            case 3:
-                mode = "stop";
-                break;
-            case 4:
-                mode = "invisibility";
-                break;
-        }
-        return mode;
-    }
+    
 
     public void CheckValidity()
     {
@@ -90,34 +53,18 @@ public class Food : MonoBehaviour
 
     }
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if (_snakeScript._scoreInfo > 5)
-            {
-                //Debug.Log("more");
-                if (CheckExtraAvaliability())
-                {
-                    //Debug.Log("initiate: extra food");
-                    
-                    
-                }
-                else
-                {
-                    RandomizePosition();
-                }
-            }
-            else
-            {
-                RandomizePosition();
-            }
+
+            RandomizePosition();
             _audio.PlayOneShot(_audio.clip, 0.2f);
 
-        }
-        
+        }       
         
     }
-    
+
 }
 

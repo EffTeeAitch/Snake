@@ -9,6 +9,10 @@ TagManager:
   - Obstacle
   - Segments
   - gridArea
+  - Plus6
+  - SlowSpeed
+  - Stop
+  - Invisibility
   layers:
   - Default
   - TransparentFX

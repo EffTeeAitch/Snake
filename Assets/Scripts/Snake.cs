@@ -9,13 +9,13 @@ public class Snake : MonoBehaviour
     public readonly List<Transform> _segments = new List<Transform>();
     public Transform segmentPrefab;
     public int initialSize = 4;
-    
+
     private AudioSource _audio = new AudioSource();
     public GameObject foodObject;
     [SerializeField] public int _scoreInfo;
     private int _bestScore;
     public Text text;
-    private float fixedDeltaTime;
+    [HideInInspector] public float fixedDeltaTime;
 
     private void Start()
     {
@@ -82,7 +82,7 @@ public class Snake : MonoBehaviour
             }
         }
     }
-    private void Speed()
+    public void Speed()
     {
         switch (_scoreInfo)
         {
@@ -113,12 +113,19 @@ public class Snake : MonoBehaviour
         }
         Time.fixedDeltaTime = fixedDeltaTime;
     }
-    private void Grow()
+    public void Grow()
     {
         Transform segment = Instantiate(this.segmentPrefab);
         segment.position = _segments[_segments.Count - 1].position;
 
         _segments.Add(segment);
+    }
+    public void Grow(int size)
+    {
+        Transform segment = Instantiate(this.segmentPrefab);
+        segment.position = _segments[_segments.Count - 1].position;
+        for(int i = 0; i < size - 1; i++)
+         _segments.Add(segment);
     }
     public void ResetSnake()
     { 
