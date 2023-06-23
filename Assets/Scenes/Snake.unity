@@ -616,8 +616,8 @@ MonoBehaviour:
   gridArea: {fileID: 864387895}
   expandedGridArea: {fileID: 674693548}
   _player: {fileID: 1161375261}
-  _render: {fileID: 0}
   snakeScript: {fileID: 0}
+  _render: {fileID: 0}
 --- !u!850595691 &617787810
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -786,7 +786,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864387894}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 42, y: 22, z: 1}
   m_Children: []
@@ -1015,6 +1015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segmentPrefab: {fileID: 2596772345500964853, guid: 555a447002443cb4c8061b4d75d858a3, type: 3}
   initialSize: 4
+  isSpeedFixed: 0
   foodObject: {fileID: 1406060357}
   _scoreInfo: 0
   text: {fileID: 29630188}
@@ -1288,8 +1289,8 @@ MonoBehaviour:
   gridArea: {fileID: 864387895}
   expandedGridArea: {fileID: 674693548}
   _player: {fileID: 1161375261}
-  _render: {fileID: 0}
   snakeScript: {fileID: 0}
+  _render: {fileID: 0}
 --- !u!82 &1406060362
 AudioSource:
   m_ObjectHideFlags: 0

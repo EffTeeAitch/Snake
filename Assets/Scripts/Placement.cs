@@ -34,16 +34,22 @@ public class Placement : MonoBehaviour
     {
         if (_snakeScript._scoreInfo >= 20)
         {
-            //foreach(GameObject w in Walls)
-            //{
-            //    Destroy(w);
-            //}
-            
+            foreach (GameObject w in Walls)
+            {
+                w.GetComponent<SpriteRenderer>().enabled = false;
+                w.GetComponent<BoxCollider2D>().enabled = false;
+            }
+
+
             isFree = true;
         }
         else
-        {   
-
+        {
+            foreach (GameObject w in Walls)
+            {
+                w.GetComponent<SpriteRenderer>().enabled = true;
+                w.GetComponent<BoxCollider2D>().enabled = true;
+            }
 
             isFree = false;
         }

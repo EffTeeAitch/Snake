@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class ExtraFood : Food
@@ -8,26 +9,19 @@ public class ExtraFood : Food
     void Start()
     {
         snakeScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Snake>();
-        this.gameObject.tag = ExtraType().ToString();
+        this.gameObject.tag = "SlowSpeed";
+        //this.gameObject.tag = ExtraType().ToString();
     }
 
     void Update()
     {
-        /* wrorks
-        if (snakeScript._scoreInfo == 4)
-        {
-            this.gameObject.tag = "Stop";
-        }
-        if (snakeScript._scoreInfo == 7)
-        {
-            this.gameObject.tag = "Invisibility";
-        }*/
+
     }
 
     public string ExtraType()
     {
         string mode = "";
-        switch (Random.Range(1, 4))
+        switch (Random.Range(1, 5))
         {
             case 1:
                 mode = "Plus6";
@@ -52,26 +46,31 @@ public class ExtraFood : Food
             switch (this.gameObject.tag)
             {
                 case "Stop":
-                    /*snakeScript.fixedDeltaTime = 0.001f;
-                    snakeScript.Speed();*/
+                    snakeScript.Stop();         
                     Debug.Log("Stop");
                     break;
                 case "Invisibility":
-                    _player.GetComponent<SpriteRenderer>().color = Color.red;
+                    snakeScript.MakeInvisible();        //works
                     Debug.Log("Invisibility");
                     break;
                 case "Plus6":
                     snakeScript._scoreInfo += 6;
-                    snakeScript.Grow(6);  //doesn't work
+                    for(int i = 0; i < 5; i++)
+                    {
+                        snakeScript.Grow(); //works
+                    }
                     Debug.Log("Plus6");
                     break;
                 case "SlowSpeed":
-                   /* snakeScript.fixedDeltaTime -= 0.001f;
-                    snakeScript.Speed();*/
+                    snakeScript.SlowTheSpeedDown();         
                     Debug.Log("SlowSpeed");
                     break;
             }
+        }else if (other.CompareTag("Obstacle") || other.CompareTag("Food") || other.CompareTag("Segments"))
+        {
+            RandomizePosition();
         }
+
         RandomizePosition();
         this.gameObject.tag = ExtraType().ToString();
     }

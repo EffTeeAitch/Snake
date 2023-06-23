@@ -7,10 +7,9 @@ public class Food : MonoBehaviour
     public BoxCollider2D expandedGridArea;
     public GameObject _player;
     private AudioSource _audio = new AudioSource();
-    private Snake _snakeScript;
+    public Snake snakeScript;
     [HideInInspector] public SpriteRenderer _render;
     private bool _isExtra = false;
-    [HideInInspector] public Snake snakeScript;
     private GameObject _extraFood;
 
 
@@ -20,7 +19,7 @@ public class Food : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _audio = GetComponent<AudioSource>();
         _render = GetComponent<SpriteRenderer>();
-        _snakeScript = _player.GetComponent<Snake>();
+        snakeScript = _player.GetComponent<Snake>();
     }
 
 
@@ -56,9 +55,12 @@ public class Food : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Segments"))
+        {
+            RandomizePosition();
+        }
         if (other.CompareTag("Player"))
         {
-
             RandomizePosition();
             _audio.PlayOneShot(_audio.clip, 0.2f);
 

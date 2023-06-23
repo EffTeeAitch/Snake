@@ -3,7 +3,10 @@ guid: cd5ec3aea4af5894194d29d61223a2da
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - segmentPrefab: {fileID: 2596772345500964853, guid: 555a447002443cb4c8061b4d75d858a3, type: 3}
+  - foodObject: {instanceID: 0}
+  - text: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
